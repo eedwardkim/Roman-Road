@@ -1,18 +1,32 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import TypingTest from "@/components/TypingTest";
 import Navigation from "@/components/Navigation";
+import TypingTest from "@/components/TypingTest";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
-import { getProfile } from "@/lib/db/profiles";
-import { getLocalUserId } from "@/lib/db/local-storage";
 import RealTimeStats from "@/components/RealTimeStats";
 import SessionStatusBar from "@/components/SessionStatusBar";
 import KeystrokeVisualization from "@/components/KeystrokeVisualization";
+import RecordingToast from "@/components/RecordingToast";
 import RapidSandbox from "@/components/RapidSandbox";
+import { getProfile } from "@/lib/db/profiles";
+import { getLocalUserId } from "@/lib/db/local-storage";
+import { useSystemWideCapture } from "@/hooks/useSystemWideCapture";
 
-export default function Home() {
+export default function FreeFlowPage() {
   const [typingArchetype, setTypingArchetype] = useState("balanced");
+  const {
+    isRecording: isSystemWideRecording,
+    typedText: systemWideText,
+    sessionStartTime: systemWideSessionStart,
+    isCaptureReady,
+    captureStatus,
+    captureError,
+    stopRecording,
+  } = useSystemWideCapture({
+    enabled: true,
+    autoStart: true,
+  });
   const [sessionStats, setSessionStats] = useState({
     wpm: 0,
     accuracy: 100,
@@ -51,23 +65,31 @@ export default function Home() {
       <Navigation />
       <main className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Main Content - Typing Test */}
           <div className="lg:col-span-3">
             <div className="mb-6">
               <h1 className="text-lg font-medium mb-1" style={{ color: "var(--color-text-primary)" }}>
-                Typing Test
+                Free Flow
               </h1>
               <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-                Improve your typing speed by identifying and training your weakest key transitions
+                Capture your natural typing anywhere on your system and review your freeform session stats.
               </p>
             </div>
 
-            <TypingTest 
+            <TypingTest
+              initialMode="free"
+              fixedMode="free"
+              showModeSelector={false}
               onSessionUpdate={handleSessionUpdate}
+              systemWideText={systemWideText}
+              isSystemWideRecording={isSystemWideRecording}
+              systemWideSessionStart={systemWideSessionStart}
+              isSystemWideCaptureReady={isCaptureReady}
+              systemWideCaptureStatus={captureStatus}
+              systemWideCaptureError={captureError}
+              stopSystemWideRecording={stopRecording}
             />
           </div>
 
-          {/* Sidebar - Stats & Visualization */}
           <div className="lg:col-span-1 space-y-4">
             <RealTimeStats
               wpm={sessionStats.wpm}
@@ -76,7 +98,7 @@ export default function Home() {
               progress={sessionStats.progress}
               total={sessionStats.total}
             />
-            
+
             <KeystrokeVisualization
               keystrokes={sessionStats.keystrokeLatencies}
               isActive={sessionStats.isActive}
@@ -95,6 +117,8 @@ export default function Home() {
       />
 
       <KeyboardShortcuts />
+
+      <RecordingToast isVisible={isSystemWideRecording} />
     </div>
   );
 }

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Standalone Node WebSocket bridge — not part of the Next app.
+    "ws-bridge/**",
   ]),
 ]);
 

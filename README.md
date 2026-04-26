@@ -1,5 +1,61 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## System-wide typing capture (macOS)
+
+Bi-grammar can analyze your everyday typing across any macOS app via a Python
+helper that streams keystrokes into Bi-grammar through a local WebSocket bridge.
+
+### One-time setup
+
+1. **Grant Accessibility permission to your terminal** so `pynput` can read
+   keys system-wide:
+   `System Settings → Privacy & Security → Accessibility` → enable Terminal
+   (or iTerm / your shell of choice). You may need to fully quit and reopen
+   the terminal for the change to take effect.
+2. **Install the Python dependencies**:
+   ```bash
+   pip3 install -r scripts/requirements.txt
+   ```
+3. **Install the Node dependencies** (adds `ws` and `concurrently`):
+   ```bash
+   npm install
+   ```
+
+### Run
+
+In one terminal, start Next.js + the WebSocket bridge together:
+
+```bash
+npm run dev:all
+```
+
+In a second terminal, start the capture script:
+
+```bash
+python3 scripts/keymaxx_capture.py
+```
+
+Open <http://localhost:3000>. Type anywhere on your Mac. After ~5 seconds of
+consistent typing (no gap > 3s), a small **Recording** toast appears in the
+bottom-right corner of the Bi-grammar tab. After 15 seconds of inactivity, the
+session ends, the toast fades out, and the session is saved with mode
+`system_wide`. The on-screen typing test is unaffected.
+
+> **Privacy:** only printable characters, Space, and Backspace are forwarded.
+> Modifiers, function keys, arrows, and navigation keys are dropped. Data
+> stays on `localhost`.
+
+If you only want to run the bridge separately:
+
+```bash
+npm run ws-bridge   # ws://127.0.0.1:8765
+```
+
+Environment variables (optional):
+- `PORT`: WebSocket bridge port (default: 8765)
+- `HOST`: WebSocket bridge host (default: 127.0.0.1)
+- `NEXT_PUBLIC_KEYMAXX_WS_URL`: Browser connection URL (default: ws://127.0.0.1:8765)
+
 ## Getting Started
 
 First, run the development server:

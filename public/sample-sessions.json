@@ -1,0 +1,110 @@
+[
+  {
+    "id": "sample-1",
+    "started_at": "2026-04-15T10:00:00.000Z",
+    "wpm": 85,
+    "mode": "normal",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-2",
+    "started_at": "2026-04-16T10:00:00.000Z",
+    "wpm": 92,
+    "mode": "random",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-3",
+    "started_at": "2026-04-17T10:00:00.000Z",
+    "wpm": 88,
+    "mode": "drill",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-4",
+    "started_at": "2026-04-18T10:00:00.000Z",
+    "wpm": 95,
+    "mode": "free",
+    "capture_source": "in_app",
+    "text_origin": "freeform",
+    "context_key": "in_app_freeform"
+  },
+  {
+    "id": "sample-5",
+    "started_at": "2026-04-19T10:00:00.000Z",
+    "wpm": 102,
+    "mode": "system_wide",
+    "capture_source": "system_wide",
+    "text_origin": "freeform",
+    "context_key": "system_wide_freeform"
+  },
+  {
+    "id": "sample-6",
+    "started_at": "2026-04-20T10:00:00.000Z",
+    "wpm": 98,
+    "mode": "normal",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-7",
+    "started_at": "2026-04-21T10:00:00.000Z",
+    "wpm": 105,
+    "mode": "drill",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-8",
+    "started_at": "2026-04-22T10:00:00.000Z",
+    "wpm": 110,
+    "mode": "random",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-9",
+    "started_at": "2026-04-23T10:00:00.000Z",
+    "wpm": 108,
+    "mode": "system_wide",
+    "capture_source": "system_wide",
+    "text_origin": "freeform",
+    "context_key": "system_wide_freeform"
+  },
+  {
+    "id": "sample-10",
+    "started_at": "2026-04-24T10:00:00.000Z",
+    "wpm": 115,
+    "mode": "free",
+    "capture_source": "in_app",
+    "text_origin": "freeform",
+    "context_key": "in_app_freeform"
+  },
+  {
+    "id": "sample-11",
+    "started_at": "2026-04-25T10:00:00.000Z",
+    "wpm": 112,
+    "mode": "normal",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  },
+  {
+    "id": "sample-12",
+    "started_at": "2026-04-26T10:00:00.000Z",
+    "wpm": 120,
+    "mode": "drill",
+    "capture_source": "in_app",
+    "text_origin": "prompted",
+    "context_key": "in_app_prompted"
+  }
+]
